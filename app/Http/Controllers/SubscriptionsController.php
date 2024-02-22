@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 use App\Models\subscription;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 
 
 class SubscriptionsController extends Controller
 {
+
+
+    function __construct()
+    {
+        $this->middleware(['permission:Abonnement-list'],['except' => ['chose_abonnement','buy_aboonement','checkTrialPeriod']]);
+        // $this->middleware(['permission:product-create'], ['only' => ['create', 'store']]);
+        // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
+    }
+
     public function index(){
 
          return view('front.admin.subscription.form-layout');
@@ -80,9 +92,9 @@ class SubscriptionsController extends Controller
 
      return view('front.admin.subscription.update',compact('subscription'));
 
-        return redirect()->back();
 
     }
+  
     public function update_subscription(Request $request, $id)
     {
         // Find the subscription by ID
@@ -101,7 +113,7 @@ class SubscriptionsController extends Controller
             'MediaTypesAllowed' => 'required|max:100',
             'ScansAllowed' => 'required|integer',
             'Duration' => 'required|max:50',
-            'Price' => 'required|numeric|min:0',
+            'Price' => 'required|numeric',
         ];
 
         // Custom validation messages
@@ -133,4 +145,50 @@ class SubscriptionsController extends Controller
         // Return a success response
         return redirect()->route('plans_abonnement');
     }
+
+    public function chose_abonnement(){
+         
+        $Free = subscription::where('PlanName','Free')->first();
+        $Standard = subscription::where('PlanName','Standard')->first();
+        $Premium = subscription::where('PlanName','Premium')->first();
+  
+        $id_user = auth()->id();
+        
+        $user = User::find($id_user);
+        
+ 
+      return view('front.admin.Boss.chose_abonnement',compact('Free','Standard','Premium','user'));
+ 
+     }
+
+    public function buy_aboonement($id){
+   
+        $id_user = auth()->id();
+
+        $user = User::find($id_user);
+    
+        $user->sub_id = $id;
+     
+    
+        $user->save();
+       
+
+        return redirect()->back();
+     }
+
+     public function checkTrialPeriod()
+{
+    $user = auth()->user();
+
+    $creationDate = Carbon::parse($user->created_at);
+    $expiryDate = $creationDate->addDays(30);
+   
+
+    if (Carbon::now()->gt($expiryDate)) {
+        // Les 30 jours sont écoulés, désactiver les menus ou effectuer d'autres actions nécessaires
+    
+        // Vous pouvez également envoyer une notification à l'utilisateur
+        // $user->notify(new TrialPeriodExpired());
+    }
+}
 }

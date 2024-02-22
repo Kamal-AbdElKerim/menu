@@ -1,6 +1,10 @@
-@extends('layouts.master')
+@extends('front.layouts.master')
+
+
 
 @section('content')
+
+<div class="m-5 p-1" >
     <div class="row">
         <div class="col-lg-12 margin-tb mb-4">
             <div class="pull-left">
@@ -50,4 +54,7 @@
             </div>
         </div>
     </form>
-@endsection
+      
+</div>
+
+    @endsection

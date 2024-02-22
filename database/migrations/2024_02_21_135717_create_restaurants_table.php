@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id('RestaurantID');
             $table->string('Name', 255);
             $table->string('Address', 255);
+            $table->unsignedBigInteger('UserID');
+
             $table->string('Hours', 255);
             // Add additional restaurant information fields as needed
             // $table->string('additional_field');
             // ...
+            $table->foreign('UserID')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

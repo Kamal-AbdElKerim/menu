@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\SubscriptionsController;
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('front.admin.subscription.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -40,6 +42,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete_sub/{id}', [SubscriptionsController::class, 'delete_sub'])->name('delete_sub');
     Route::get('/form_Update_sub/{id}', [SubscriptionsController::class, 'form_Update_sub'])->name('form_Update_sub');
     Route::post('/Update_subscription/{id}', [SubscriptionsController::class, 'Update_subscription'])->name('Update_subscription');
+
+    Route::get('/chose_abonnement', [SubscriptionsController::class, 'chose_abonnement'])->name('chose_abonnement');
+    Route::get('/buy_aboonement/{id}', [SubscriptionsController::class, 'buy_aboonement'])->name('buy_aboonement');
+
+    Route::get('/menus', [MenuController::class, 'menus'])->name('menus');
+    Route::post('/add_Menu', [MenuController::class, 'add_Menu'])->name('add_Menu');
+
+
+    Route::post('/add_Menu', [RestaurantController::class, 'add_Menu'])->name('add_Menu');
+
+
 
 });
 

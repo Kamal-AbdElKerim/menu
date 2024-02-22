@@ -12,8 +12,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware(['permission:Users-list']);
+        // $this->middleware(['permission:product-create'], ['only' => ['create', 'store']]);
+        // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
+    }
    
-    public function index(Request $request)
+    public function index(Request $request) 
     {
         $data = User::latest()->paginate(5);
         return view('users.index',compact('data'));
@@ -89,6 +97,7 @@ class UserController extends Controller
     
     public function destroy($id)
     {
+        // dd($id);
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');

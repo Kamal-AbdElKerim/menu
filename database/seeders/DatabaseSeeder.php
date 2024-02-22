@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder
         'product-list',
         'product-create',
         'product-edit',
-        'product-delete'
+        'product-delete',
+        'Abonnement-list',
+        'Users-list'
     ];
 
 

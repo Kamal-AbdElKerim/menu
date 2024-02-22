@@ -1,7 +1,10 @@
-@extends('layouts.master')
+@extends('front.layouts.master')
+
 
 
 @section('content')
+
+<div class="m-5 p-1" >
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -12,10 +15,10 @@
                 </h2>
             </div>
         </div>
-    </div>
-
-
-    @if (count($errors) > 0)
+      </div>
+      
+      
+      @if (count($errors) > 0)
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
@@ -24,9 +27,9 @@
                 @endforeach
             </ul>
         </div>
-    @endif
-
-    <form action="{{ route('roles.update', $role->id) }}" method="post">
+      @endif
+      
+      <form action="{{ route('roles.update', $role->id) }}" method="post">
         @csrf
         @method('PATCH')
         <div class="row">
@@ -54,7 +57,8 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-    </form>
+      </form>
+      
+</div>
 
-
-@endsection
+    @endsection
