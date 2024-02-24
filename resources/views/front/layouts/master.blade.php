@@ -78,6 +78,7 @@
           @endcan
         </li>
         <li class="nav-item">
+          @can('role-list')
           <a href="{{ route('roles.index') }}">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,8 +92,10 @@
              Roles <span class="pro-badge">Pro</span>
             </span>
           </a>
+          @endcan
         </li>
         <li class="nav-item">
+          @can('Users-list')
           <a href="{{ route('users.index') }}">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,9 +109,28 @@
               Users <span class="pro-badge">Pro</span>
             </span>
           </a>
+          @endcan
+        </li>
+        <li class="nav-item">
+          @can('Operateur_list')
+          <a href="{{ route('Operateur.index') }}">
+            <span class="icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3.33334 11.6667C3.33334 10.7462 4.07954 10 5.00001 10H15C15.9205 10 16.6667 10.7462 16.6667 11.6667C16.6667 15.3486 13.6819 18.3333 10 18.3333C6.31811 18.3333 3.33334 15.3486 3.33334 11.6667Z" />
+                <path
+                  d="M13.3333 4.99999C13.3333 6.84094 11.8409 8.33332 9.99999 8.33332C8.15904 8.33332 6.66666 6.84094 6.66666 4.99999C6.66666 3.15904 8.15904 1.66666 9.99999 1.66666C11.8409 1.66666 13.3333 3.15904 13.3333 4.99999Z" />
+              </svg>
+            </span>
+            <span class="text">
+              Operateur <span class="pro-badge">Pro</span>
+            </span>
+          </a>
+          @endcan
         </li>
  
         <li class="nav-item">
+          @can('abonnement')
           <a href="{{ route('chose_abonnement') }}">
             <span class="icon">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,9 +149,27 @@
               </svg>
             </span>
             <span class="text">
-              Task <span class="pro-badge">Pro</span>
+              Abonnement  <span class="pro-badge">Pro</span>
             </span>
           </a>
+          @endcan
+        </li>
+        <li class="nav-item">
+          @can('restaurant-info')
+          <a href="{{ route('Restaurant') }}">
+            <span class="icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14.7917 2.5C14.7917 2.15483 14.5118 1.875 14.1667 1.875C13.8215 1.875 13.5417 2.15483 13.5417 2.5V3.33333H6.45832V2.5C6.45832 2.15483 6.1785 1.875 5.83332 1.875C5.48815 1.875 5.20832 2.15483 5.20832 2.5V3.33333H3.33332C2.41285 3.33333 1.66666 4.07952 1.66666 5V6.04167H18.3333V5C18.3333 4.07952 17.5872 3.33333 16.6667 3.33333H14.7917V2.5Z" />
+                <path
+                  d="M18.3333 7.29166H1.66666V15C1.66666 15.9205 2.41285 16.6667 3.33332 16.6667H16.6667C17.5872 16.6667 18.3333 15.9205 18.3333 15V7.29166Z" />
+              </svg>
+            </span>
+            <span class="text">
+              Restaurant <span class="pro-badge">Pro</span>
+            </span>
+          </a>
+          @endcan
         </li>
         <li class="nav-item">
           <a href="{{ route('menus') }}">
@@ -146,6 +186,22 @@
             </span>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('items') }}">
+            <span class="icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14.7917 2.5C14.7917 2.15483 14.5118 1.875 14.1667 1.875C13.8215 1.875 13.5417 2.15483 13.5417 2.5V3.33333H6.45832V2.5C6.45832 2.15483 6.1785 1.875 5.83332 1.875C5.48815 1.875 5.20832 2.15483 5.20832 2.5V3.33333H3.33332C2.41285 3.33333 1.66666 4.07952 1.66666 5V6.04167H18.3333V5C18.3333 4.07952 17.5872 3.33333 16.6667 3.33333H14.7917V2.5Z" />
+                <path
+                  d="M18.3333 7.29166H1.66666V15C1.66666 15.9205 2.41285 16.6667 3.33332 16.6667H16.6667C17.5872 16.6667 18.3333 15.9205 18.3333 15V7.29166Z" />
+              </svg>
+            </span>
+            <span class="text">
+              items <span class="pro-badge">Pro</span>
+            </span>
+          </a>
+        </li>
+   
         <li class="nav-item nav-item-has-children">
           <a href="#0" class="collapsed" data-bs-toggle="collapse" data-bs-target="#ddmenu_3" aria-controls="ddmenu_3"
             aria-expanded="false" aria-label="Toggle navigation">

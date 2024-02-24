@@ -56,11 +56,9 @@
                     <th class="lead-email">
                       <h6>Email</h6>
                     </th>
-                    <th class="lead-phone">
-                      <h6>Phone No</h6>
-                    </th>
+                
                     <th class="lead-company">
-                      <h6>Company</h6>
+                      <h6>Restaurant</h6>
                     </th>
                     <th>
                       <h6>Action</h6>
@@ -69,6 +67,9 @@
                   <!-- end table row-->
                 </thead>
                 <tbody>
+                  @foreach ($Menus as $item)
+                      
+              
                   <tr>
                     <td class="min-width">
                       <div class="lead">
@@ -76,173 +77,25 @@
                           <img src="assets/images/lead/lead-1.png" alt="" />
                         </div>
                         <div class="lead-text">
-                          <p>Courtney Henry</p>
+                          <p>{{ $item->MenuName }}</p>
                         </div>
                       </div>
                     </td>
                     <td class="min-width">
-                      <p><a href="#0">yourmail@gmail.com</a></p>
+                      <p><a href="#0">{{ $item->created_at->diffForHumans() }}</a></p>
                     </td>
+                   
                     <td class="min-width">
-                      <p>(303)555 3343523</p>
-                    </td>
-                    <td class="min-width">
-                      <p>UIdeck digital agency</p>
+                      <p>{{ $item->Name }}</p>
                     </td>
                     <td>
                       <div class="action">
-                        <button class="text-danger">
-                          <i class="lni lni-trash-can"></i>
-                        </button>
+                      
+                        <a class="text-danger" href="{{ route('delete_menu',$item->MenuID) }}"><i class="lni lni-trash-can"></i></a>
                       </div>
                     </td>
                   </tr>
-                  <!-- end table row -->
-                  <tr>
-                    <td class="min-width">
-                      <div class="lead">
-                        <div class="lead-image">
-                          <img src="assets/images/lead/lead-2.png" alt="" />
-                        </div>
-                        <div class="lead-text">
-                          <p>John Doe</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="min-width">
-                      <p><a href="#0">yourmail@gmail.com</a></p>
-                    </td>
-                    <td class="min-width">
-                      <p>(303)555 3343523</p>
-                    </td>
-                    <td class="min-width">
-                      <p>Graygrids digital agency</p>
-                    </td>
-                    <td>
-                      <div class="action">
-                        <button class="text-danger">
-                          <i class="lni lni-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end table row -->
-                  <tr>
-                    <td class="min-width">
-                      <div class="lead">
-                        <div class="lead-image">
-                          <img src="assets/images/lead/lead-3.png" alt="" />
-                        </div>
-                        <div class="lead-text">
-                          <p>David Smith</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="min-width">
-                      <p><a href="#0">yourmail@gmail.com</a></p>
-                    </td>
-                    <td class="min-width">
-                      <p>(303)555 3343523</p>
-                    </td>
-                    <td class="min-width">
-                      <p>Abc agency</p>
-                    </td>
-                    <td>
-                      <div class="action">
-                        <button class="text-danger">
-                          <i class="lni lni-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end table row -->
-                  <tr>
-                    <td class="min-width">
-                      <div class="lead">
-                        <div class="lead-image">
-                          <img src="assets/images/lead/lead-4.png" alt="" />
-                        </div>
-                        <div class="lead-text">
-                          <p>Jonathon</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="min-width">
-                      <p><a href="#0">yourmail@gmail.com</a></p>
-                    </td>
-                    <td class="min-width">
-                      <p>(303)555 3343523</p>
-                    </td>
-                    <td class="min-width">
-                      <p>Creative IT Agency</p>
-                    </td>
-                    <td>
-                      <div class="action">
-                        <button class="text-danger">
-                          <i class="lni lni-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end table row -->
-                  <tr>
-                    <td>
-                      <div class="lead">
-                        <div class="lead-image">
-                          <img src="assets/images/lead/lead-5.png" alt="" />
-                        </div>
-                        <div class="lead-text">
-                          <p>Anna Lee</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p><a href="#0">yourmail@gmail.com</a></p>
-                    </td>
-                    <td>
-                      <p>(303)555 3343523</p>
-                    </td>
-                    <td>
-                      <p>Halal It agency</p>
-                    </td>
-                    <td>
-                      <div class="action">
-                        <button class="text-danger">
-                          <i class="lni lni-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end table row -->
-                  <tr>
-                    <td>
-                      <div class="lead">
-                        <div class="lead-image">
-                          <img src="assets/images/lead/lead-6.png" alt="" />
-                        </div>
-                        <div class="lead-text">
-                          <p>Gray Simon</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p><a href="#0">yourmail@gmail.com</a></p>
-                    </td>
-                    <td>
-                      <p>(303)555 3343523</p>
-                    </td>
-                    <td>
-                      <p>DesignCourse</p>
-                    </td>
-                    <td>
-                      <div class="action">
-                        <button class="text-danger">
-                          <i class="lni lni-trash-can"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end table row -->
+                  @endforeach
                 </tbody>
               </table>
               <!-- end table -->

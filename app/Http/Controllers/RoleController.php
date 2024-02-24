@@ -14,6 +14,12 @@ class RoleController extends Controller
 
     function __construct()
     {
+        $this->middleware(function ($request, $next) {
+            if (session()->has('Abonnement')) {
+                abort(403, 'Abonnement has ended');
+            }
+            return $next($request);
+        });
         $this->middleware(['permission:role-list|role-create|role-edit|role-delete'], ['only' => ['index', 'store']]);
         $this->middleware(['permission:role-create'], ['only' => ['create', 'store']]);
         $this->middleware(['permission:role-edit'], ['only' => ['edit', 'update']]);

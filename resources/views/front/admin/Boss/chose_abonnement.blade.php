@@ -83,14 +83,10 @@
               </ul>
             </div>
             <div class="pricing-footer">
-              @if ($user->sub_id !== $Free->SubscriptionID)
+            
+              <button type="button" class="btn btn-primary" disabled>Is Done</button>
 
-              <a href="#0" class="main-btn primary-btn-outline btn-sm btn-hover">Buy Now</a>
-              @else
-              {{-- <a href="#" class="main-btn primary-btn-outline btn-sm btn-hover">Done</a> --}}
-              <button type="button" class="btn btn-primary" disabled>Done</button>
-
-              @endif
+             
             </div>
           </div>
         </div>
@@ -99,43 +95,7 @@
             <span class="popular">Popular</span>
             <div class="pricing-header">
              
-              <h3>{{ $Standard->PlanName }}</h3>
-              <div class="price">
-                <h1 class="text-primary">
-                  {{ $Standard->Price }}MAD <span class="text-sm text-regular">Monthly</span>
-                </h1>
-              </div>
-            </div>
-            <div class="pricing-body">
-              <ul>
-                <p>Description</p>
-                <li class=" text-danger ">{{ $Standard->Description }}</li>
-                <p>Num Menu Items Allowed</p>
-                <li class=" text-danger ">{{ $Standard->NumMenuItemsAllowed }}</li>
-                <p>Media Types Allowed</p>
-                <li class=" text-danger ">{{ $Standard->MediaTypesAllowed }}</li>
-                <p>Scans Allowed</p>
-                <li class=" text-danger ">{{ $Standard->ScansAllowed }}</li>
-                <p>Duration</p>
-                <li class=" text-danger ">{{ $Standard->Duration }}</li>
-              </ul>
-            </div>
-            <div class="pricing-footer">
-              @if ($user->sub_id !== $Standard->SubscriptionID)
-              <a href="{{ route('buy_aboonement',$Standard->SubscriptionID) }}" class="main-btn primary-btn btn-sm btn-hover">Buy Now</a>
-              @else
-              <button type="button" class="btn btn-primary" disabled>Done</button>
-
-              @endif
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-10">
-          <div class="single-pricing">
-            <div class="pricing-header">
-           
               <h3>{{ $Premium->PlanName }}</h3>
-
               <div class="price">
                 <h1 class="text-primary">
                   {{ $Premium->Price }}MAD <span class="text-sm text-regular">Monthly</span>
@@ -158,8 +118,44 @@
             </div>
             <div class="pricing-footer">
               @if ($user->sub_id !== $Premium->SubscriptionID)
+              <a href="{{ route('buy_aboonement',$Premium->SubscriptionID) }}" class="main-btn primary-btn btn-sm btn-hover">Buy Now</a>
+              @else
+              <button type="button" class="btn btn-primary" disabled>Done</button>
 
-              <a href="{{ route('buy_aboonement',$Premium->SubscriptionID) }}" class="main-btn primary-btn-outline btn-sm btn-hover">Buy Now</a>
+              @endif
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-10">
+          <div class="single-pricing">
+            <div class="pricing-header">
+           
+              <h3>{{ $Standard->PlanName }}</h3>
+
+              <div class="price">
+                <h1 class="text-primary">
+                  {{ $Standard->Price }}MAD <span class="text-sm text-regular">Monthly</span>
+                </h1>
+              </div>
+            </div>
+            <div class="pricing-body">
+              <ul>
+                <p>Description</p>
+                <li class=" text-danger ">{{ $Standard->Description }}</li>
+                <p>Num Menu Items Allowed</p>
+                <li class=" text-danger ">{{ $Standard->NumMenuItemsAllowed }}</li>
+                <p>Media Types Allowed</p>
+                <li class=" text-danger ">{{ $Standard->MediaTypesAllowed }}</li>
+                <p>Scans Allowed</p>
+                <li class=" text-danger ">{{ $Standard->ScansAllowed }}</li>
+                <p>Duration</p>
+                <li class=" text-danger ">{{ $Standard->Duration }}</li>
+              </ul>
+            </div>
+            <div class="pricing-footer">
+              @if ($user->sub_id !== $Standard->SubscriptionID)
+
+              <a href="{{ route('buy_aboonement',$Standard->SubscriptionID) }}" class="main-btn primary-btn-outline btn-sm btn-hover">Buy Now</a>
               @else
               <button type="button" class="btn btn-primary" disabled>Done</button>
 

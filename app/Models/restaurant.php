@@ -15,4 +15,6 @@ class restaurant extends Model
         'UserID',
         'Hours',
     ];
+    protected $primaryKey = 'RestaurantID';
+
 }

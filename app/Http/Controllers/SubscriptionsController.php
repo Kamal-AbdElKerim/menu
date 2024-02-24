@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\restaurant;
 use App\Models\subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -16,8 +17,9 @@ class SubscriptionsController extends Controller
 
     function __construct()
     {
+     
         $this->middleware(['permission:Abonnement-list'],['except' => ['chose_abonnement','buy_aboonement','checkTrialPeriod']]);
-        // $this->middleware(['permission:product-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:chose_abonnement'], ['only' => ['chose_abonnement','buy_aboonement','checkTrialPeriod']]);
         // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
         // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
     }
@@ -164,31 +166,30 @@ class SubscriptionsController extends Controller
     public function buy_aboonement($id){
    
         $id_user = auth()->id();
+        
+        $restaurant = restaurant::where('UserID',$id_user)->first() ;
+        $users = user::where('restaurants_id',$restaurant->RestaurantID)->get() ;
+        // dd($users);
+
+        foreach ($users as  $value) {
+            $value->sub_id = $id ;
+            $value->created_at = Carbon::now();
+            $value->save();
+
+        }
+
 
         $user = User::find($id_user);
     
         $user->sub_id = $id;
-     
-    
+        $user->created_at = Carbon::now();
+        session()->forget('Abonnement');
+
         $user->save();
        
 
         return redirect()->back();
      }
 
-     public function checkTrialPeriod()
-{
-    $user = auth()->user();
 
-    $creationDate = Carbon::parse($user->created_at);
-    $expiryDate = $creationDate->addDays(30);
-   
-
-    if (Carbon::now()->gt($expiryDate)) {
-        // Les 30 jours sont écoulés, désactiver les menus ou effectuer d'autres actions nécessaires
-    
-        // Vous pouvez également envoyer une notification à l'utilisateur
-        // $user->notify(new TrialPeriodExpired());
-    }
-}
 }

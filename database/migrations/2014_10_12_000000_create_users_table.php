@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('sub_id')->nullable();
+            $table->unsignedBigInteger('restaurants_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('sub_id')->references('SubscriptionID')->on('subscriptions')->onDelete('cascade');
+            // $table->foreign('restaurants_id')->references('RestaurantID')->on('restaurants')->onDelete('cascade');
 
 
         });

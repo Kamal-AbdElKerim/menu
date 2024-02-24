@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OperateurController;
+use App\Http\Controllers\OperateursController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\SubscriptionsController;
 /*
@@ -34,7 +37,8 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('Operateur', OperateurController::class);
+    // Route::resource('products', ProductController::class);
 
     Route::get('/index', [SubscriptionsController::class, 'index'])->name('index');
     Route::get('/plans_abonnement', [SubscriptionsController::class, 'plans_abonnement'])->name('plans_abonnement');
@@ -48,9 +52,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/menus', [MenuController::class, 'menus'])->name('menus');
     Route::post('/add_Menu', [MenuController::class, 'add_Menu'])->name('add_Menu');
+    Route::get('/delete_menu/{id}', [MenuController::class, 'delete_menu'])->name('delete_menu');
 
 
-    Route::post('/add_Menu', [RestaurantController::class, 'add_Menu'])->name('add_Menu');
+    Route::get('/Restaurant', [RestaurantController::class, 'Restaurant'])->name('Restaurant');
+    Route::post('/add_restaurant', [RestaurantController::class, 'add_restaurant'])->name('add_restaurant');
+    Route::post('/update_restaurant/{id}', [RestaurantController::class, 'update_restaurant'])->name('update_restaurant');
+
+
+    Route::get('/items', [ItemController::class, 'items'])->name('items');
+    Route::post('/add_Item', [ItemController::class, 'add_Item'])->name('add_Item');
+    Route::get('/delete_item/{id}', [ItemController::class, 'delete_item'])->name('delete_item');
+
 
 
 

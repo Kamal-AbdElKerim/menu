@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\role;
 use App\Models\User;
 use Illuminate\View\View;
+use App\Models\restaurant;
 use App\Models\subscription;
 use Illuminate\Http\Request;
 use App\Models\model_has_role;
@@ -61,6 +62,15 @@ class RegisteredUserController extends Controller
             'model_id' => $lastInsertedId,  
          
         ]);
+
+    
+        $restaurant = new restaurant();
+        $restaurant->Name = "name the restaurant";
+        $restaurant->UserID = $lastInsertedId;
+        $restaurant->Hours = "Hours the start (08.00)";
+        $restaurant->Address = "Address the restaurant";
+        $restaurant->save();
+         
 
 
 
