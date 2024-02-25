@@ -19,4 +19,9 @@ class subscription extends Model
         'Duration',
         'Price',
     ];
+
+    public function user()
+    {
+        return $this->hasMany(user::class);
+    }
 }

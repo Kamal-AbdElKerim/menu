@@ -26,6 +26,11 @@ class User extends Authenticatable
         'restaurants_id',
     ];
 
+    public function subscription()
+    {
+        return $this->belongsTo(subscription::class,'sub_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

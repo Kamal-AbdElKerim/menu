@@ -21,12 +21,16 @@ class MenuController extends Controller
 
     public function menus(){
         $id = Auth()->id();
+        $users = User::where('id',$id)->first() ;
 
       
         $Menus = Menu::join('restaurants', 'menus.RestaurantID', '=', 'restaurants.RestaurantID')
                 ->join('users', 'restaurants.UserID', '=', 'users.id')
                 ->select('menus.*','restaurants.Name')
+                ->where('users.restaurants_id',$users->restaurants_id)
                 ->get();
+
+             
 
       
         return view('front.admin.menus.menu',compact("Menus"));

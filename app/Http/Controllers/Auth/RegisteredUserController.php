@@ -71,9 +71,15 @@ class RegisteredUserController extends Controller
         $restaurant->Address = "Address the restaurant";
         $restaurant->save();
          
+        $restaurantID = $restaurant->RestaurantID;
 
+        $users = User::where('id', $lastInsertedId)->first(); 
 
-
+        $users->update([
+            'restaurants_id' => $restaurantID, 
+           
+        ]);
+    
         event(new Registered($user));
 
         Auth::login($user);

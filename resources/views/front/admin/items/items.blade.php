@@ -34,7 +34,11 @@
       <!-- end row -->
     </div>
     <!-- ========== title-wrapper end ========== -->
-
+    @if (session()->has('upgrade_message'))
+    <div class="alert  alert-warning ">
+        {{ session('upgrade_message') }}
+    </div>
+@endif
     <!-- ========== tables-wrapper start ========== -->
     <div class="tables-wrapper">
       <div class="row">
@@ -50,6 +54,9 @@
               <table class="table">
                 <thead>
                   <tr>
+                    <th class="lead-info">
+                      <h6>image</h6>
+                    </th>
                     <th class="lead-info">
                       <h6>Item Name</h6>
                     </th>
@@ -77,6 +84,16 @@
                       
               
                   <tr>
+                    <td class="min-width">
+                      <div class="lead">
+                        {{-- <div class="lead-image">
+                          <img src="assets/images/lead/lead-1.png" alt="" />
+                        </div> --}}
+                        <div class="lead-text">
+                          <img src="{{ $item->getFirstMediaUrl('images') }}" alt="" width="100">
+                        </div>
+                      </div>
+                    </td>
                     <td class="min-width">
                       <div class="lead">
                         {{-- <div class="lead-image">
@@ -144,7 +161,7 @@
             </button>
           </div>
           <div class="modal-body px-0">
-            <form action="{{ route('add_Item') }}" method="post">
+            <form action="{{ route('add_Item') }}" method="post" enctype="multipart/form-data">
               @csrf
             <div class="content mb-30">
               <p class="text-sm">
@@ -156,6 +173,22 @@
                   <label for="exampleFormControlInput2" class="form-label">Price</label>
                   <input type="number" name="Price" class="form-control" id="exampleFormControlInput2" placeholder="Item Name">
                 </div>
+                @php
+                    $user = Auth()->user();
+                  
+                @endphp
+                @if ($user->subscription->PlanName !== "Free")
+                <div class="mb-3">
+                  <label for="exampleFormControlInput23" class="form-label">image</label>
+                  <input type="file" name="image" class="form-control" id="exampleFormControlInput23" >
+                </div>
+                @endif
+                @if ($user->subscription->PlanName !== "Free")
+                <div class="mb-3">
+                  <label for="exampleFormControlInput23" class="form-label">image</label>
+                  <input type="file" name="image" class="form-control" id="exampleFormControlInput23" >
+                </div>
+                @endif
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                   <textarea class="form-control" name="Description" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -185,57 +218,7 @@
 
   <!-- ModalThree1 -->
 
-  <div class="warning-modal">
-    <div class="modal fade" id="ModalThree1" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content card-style">
-          <div class="modal-header px-0 border-0">
-            <h5 class="text-bold">New message</h5>
-            <button class="border-0 bg-transparent h1" data-bs-dismiss="modal">
-              <i class="lni lni-cross-circle"></i>
-            </button>
-          </div>
-          <div class="modal-body px-0">
-            <form action="{{ route('add_Item') }}" method="post">
-              @csrf
-            <div class="content mb-30">
-              <p class="text-sm">
-                <div class="mb-3">
-                  <label for="exampleFormControlInput1" class="form-label">Item Name</label>
-                  <input type="text" name="ItemName" class="form-control" id="exampleFormControlInput1" placeholder="Item Name">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlInput2" class="form-label">Price</label>
-                  <input type="number" name="Price" class="form-control" id="exampleFormControlInput2" placeholder="Item Name">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                  <textarea class="form-control" name="Description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <select class="form-select" name="MenuID" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  @foreach ($menu as $item)
-                  <option value="{{ $item->MenuID }}">{{ $item->MenuName }}</option>
-                  @endforeach
-               
-                </select>
-              </p>
-            </div>
-            <div class="action d-flex flex-wrap justify-content-end">
-              <button data-bs-dismiss="modal" class="main-btn btn-sm danger-btn-outline btn-hover m-1">
-                Cancel
-              </button>
-              <button type="submit" data-bs-dismiss="modal" class="main-btn btn-sm primary-btn btn-hover m-1">
-                add Item
-              </button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ModalThree End -->
+
 
 
    
