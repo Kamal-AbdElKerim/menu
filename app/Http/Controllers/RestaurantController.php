@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\restaurant;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,10 @@ class RestaurantController extends Controller
     }
 
     public function Restaurant(){
-        
-      $restaurants =  restaurant::all();
+        $id = Auth()->id();
+      $User =  User::where('id',$id)->first();
+      $restaurants_id = $User->restaurants_id ;
+      $restaurants  = restaurant::where('RestaurantID',$restaurants_id)->first();
       
         return view('front.admin.restaurant.index',compact('restaurants'));
 

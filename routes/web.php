@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QrcodeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OperateurController;
@@ -67,6 +68,10 @@ Route::middleware('auth')->group(function () {
 
 
 
+
+
+
 });
+Route::get('/afficher_menu/{id}', [QrcodeController::class, 'afficher_menu'])->name('afficher_menu');
 
 require __DIR__.'/auth.php';

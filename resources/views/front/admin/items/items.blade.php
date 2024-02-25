@@ -183,12 +183,12 @@
                   <input type="file" name="image" class="form-control" id="exampleFormControlInput23" >
                 </div>
                 @endif
-                @if ($user->subscription->PlanName !== "Free")
+                {{-- @if ($user->subscription->PlanName !== "Free")
                 <div class="mb-3">
                   <label for="exampleFormControlInput23" class="form-label">image</label>
                   <input type="file" name="image" class="form-control" id="exampleFormControlInput23" >
                 </div>
-                @endif
+                @endif --}}
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                   <textarea class="form-control" name="Description" id="exampleFormControlTextarea1" rows="3"></textarea>

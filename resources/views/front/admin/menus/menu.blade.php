@@ -90,7 +90,7 @@
                     </td>
                     <td>
                       <div class="action">
-                      
+                      <a class="btn btn-primary" href="{{ route('afficher_menu',$item->MenuID) }}" target="_blank">afficher Menu</a>
                         <a class="text-danger" href="{{ route('delete_menu',$item->MenuID) }}"><i class="lni lni-trash-can"></i></a>
                       </div>
                     </td>

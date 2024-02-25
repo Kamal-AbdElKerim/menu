@@ -39,7 +39,7 @@ class ItemController extends Controller
                 ->select('menus.*','items.*')
                 ->where('users.restaurants_id',$users->restaurants_id)
                 ->get();
-
+    //    dd($items);
         // $media = $items[1]->getMedia('images');
 
         // if ($media->isNotEmpty()) {
