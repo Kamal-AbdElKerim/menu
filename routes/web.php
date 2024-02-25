@@ -73,5 +73,7 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::get('/afficher_menu/{id}', [QrcodeController::class, 'afficher_menu'])->name('afficher_menu');
+Route::get('/generate_qrcode', [QRCodeController::class, 'generate'])->name('generate_qrcode');
+
 
 require __DIR__.'/auth.php';
