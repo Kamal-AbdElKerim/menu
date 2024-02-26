@@ -49,6 +49,7 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        $input['Is_active'] = 3;
         // $input['sub_id'] =  $subscription->SubscriptionID;
     
         $user = User::create($input);

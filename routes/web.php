@@ -24,7 +24,7 @@ use App\Http\Controllers\SubscriptionsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -64,8 +64,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/items', [ItemController::class, 'items'])->name('items');
     Route::post('/add_Item', [ItemController::class, 'add_Item'])->name('add_Item');
     Route::get('/delete_item/{id}', [ItemController::class, 'delete_item'])->name('delete_item');
-
-
+    
+    
+    Route::get('/restaurant_all', [RestaurantController::class, 'restaurant_all'])->name('restaurant_all');
 
 
 

@@ -16,12 +16,20 @@ class RestaurantController extends Controller
             }
             return $next($request);
         });
-        $this->middleware(['permission:restaurant-info']);
-        // $this->middleware(['permission:product-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:restaurant-info'], ['except' => 'restaurant_all']);
+        $this->middleware(['permission:restaurant_all'], ['only' => 'restaurant_all']);
         // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
         // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
     }
 
+    public function restaurant_all(){
+     
+    
+      $restaurants  = restaurant::get();
+      
+        return view('front.admin.restaurant_all.restaurant_all',compact('restaurants'));
+
+    }
     public function Restaurant(){
         $id = Auth()->id();
       $User =  User::where('id',$id)->first();
