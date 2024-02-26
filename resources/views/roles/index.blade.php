@@ -61,47 +61,49 @@
               <tbody>
 
                 @foreach ($roles as $key => $role)
+                @if ($role->name === 'Admin' && Auth()->id() != 1)
+                    @continue
+                @endif
+            
                 <tr>
-                  <td>
-                    <div class="check-input-primary">
-                      <input disabled class="form-check-input" type="checkbox" id="checkbox-1"  />
-                    </div>
-                  </td>
-                  <td class="min-width name-title">
-                    <h5 class="text-bold text-dark">
-                      {{ $role->name }}
-                    </h5>
-                  </td>
-                  <td class="min-width">
-                    <p>
-                      <i class="lni lni-calendar mr-10"></i> {{ $role->created_at->diffForHumans() }}
-                    </p>
-                  </td>
-                
-               
-                  <td class="min-width">
-                    <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
-                      @csrf
-                      @method('DELETE')
-
-                    <div class="action justify-content-end">
-                    
-                      <a href="{{ route('roles.show', $role->id) }}" class="text-dark link-btn me-2 "> <i class="fa-solid fa-eye"></i></a>
-                      @can('role-edit')
-                      <a href="{{ route('roles.edit', $role->id) }}" class="text-dark link-btn ml-10 me-1"> <i class="fa-regular fa-pen-to-square"></i></a>
-                      @endcan
-                      @can('product-delete')
-                      <button type="submit" class="text-dark delete-btn ml-10 me-5"><i class="fa-solid fa-trash"></i></button>
-
-                      @endcan
-                    
-                    
-                    </div>
-                  </form>
-                  </td>
+                    <td>
+                        <div class="check-input-primary">
+                            <input disabled class="form-check-input" type="checkbox" id="checkbox-1" />
+                        </div>
+                    </td>
+                    <td class="min-width name-title">
+                        <h5 class="text-bold text-dark">
+                            {{ $role->name }}
+                        </h5>
+                    </td>
+                    <td class="min-width">
+                        <p>
+                            <i class="lni lni-calendar mr-10"></i> {{ $role->created_at->diffForHumans() }}
+                        </p>
+                    </td>
+                    <td class="min-width">
+                        <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+            
+                            <div class="action justify-content-end">
+                                <a href="{{ route('roles.show', $role->id) }}" class="text-dark link-btn me-2 "> <i
+                                        class="fa-solid fa-eye"></i></a>
+                                @can('role-edit')
+                                <a href="{{ route('roles.edit', $role->id) }}"
+                                    class="text-dark link-btn ml-10 me-1"> <i class="fa-regular fa-pen-to-square"></i></a>
+                                @endcan
+                          
+                                <button type="submit" class="text-dark delete-btn ml-10 me-5"><i class="fa-solid fa-trash"></i>
+                                </button>
+                            
+                            </div>
+                        </form>
+                    </td>
                 </tr>
                 <!-- end table row -->
-                @endforeach
+            @endforeach
+            
               </tbody>
             </table>
             <!-- end table -->

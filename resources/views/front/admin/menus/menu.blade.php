@@ -44,7 +44,7 @@
             <h6 class="mb-10">Data Table</h6>
             <button type="button" class="main-btn btn-sm primary-btn btn-hover" data-bs-toggle="modal"
             data-bs-target="#ModalThree">
-            Modal Three
+            add menu
           </button>          </div>
             <div class="table-wrapper table-responsive">
               <table class="table">
@@ -73,9 +73,9 @@
                   <tr>
                     <td class="min-width">
                       <div class="lead">
-                        <div class="lead-image">
+                        {{-- <div class="lead-image">
                           <img src="assets/images/lead/lead-1.png" alt="" />
-                        </div>
+                        </div> --}}
                         <div class="lead-text">
                           <p>{{ $item->MenuName }}</p>
                         </div>
@@ -90,7 +90,7 @@
                     </td>
                     <td>
                       <div class="action">
-                      <a class="btn btn-primary" href="{{ route('afficher_menu',$item->MenuID) }}" target="_blank">afficher Menu</a>
+                      <a class="me-5"  href="{{ route('afficher_menu',$item->MenuID) }}" target="_blank"><i class="fa-regular fa-share-from-square"></i></a>
                         <a class="text-danger" href="{{ route('delete_menu',$item->MenuID) }}"><i class="lni lni-trash-can"></i></a>
                       </div>
                     </td>

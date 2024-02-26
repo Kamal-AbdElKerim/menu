@@ -50,8 +50,11 @@
           @csrf
           @method('DELETE')
           <a class="btn btn-info" href="{{ route('Operateur.show',$user->id) }}">Show</a>
+          @if ($user->Is_active != 2 )
           <a class="btn btn-primary" href="{{ route('Operateur.edit',$user->id) }}">Edit</a>
-          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="submit" class="btn btn-danger">Delete</button>  
+          @endif
+        
       </form>
       
     </td>

@@ -33,7 +33,7 @@ class OperateurController extends Controller
     {
         $id =Auth()->id() ;
        $restaurant = restaurant::where('UserID',$id)->first() ;
-        $data = User::where('restaurants_id',$restaurant->RestaurantID)->paginate(5);
+        $data = User::where('restaurants_id',$restaurant->RestaurantID)->latest()->get();
         return view('Operateur.index',compact('data'));
     }
     

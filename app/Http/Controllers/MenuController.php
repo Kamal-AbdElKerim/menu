@@ -17,6 +17,12 @@ class MenuController extends Controller
             }
             return $next($request);
         });
+
+        
+        $this->middleware(['permission:menus-list']);
+        // $this->middleware(['permission:product-create'], ['only' => ['create', 'store']]);
+        // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
+        // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);
     }
 
     public function menus(){

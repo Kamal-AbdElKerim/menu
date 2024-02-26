@@ -58,6 +58,9 @@
                       <h6>image</h6>
                     </th>
                     <th class="lead-info">
+                      <h6>videos</h6>
+                    </th>
+                    <th class="lead-info">
                       <h6>Item Name</h6>
                     </th>
                     <th class="lead-email">
@@ -93,6 +96,15 @@
                           <img src="{{ $item->getFirstMediaUrl('images') }}" alt="" width="100">
                         </div>
                       </div>
+                    </td>
+                    <td class="min-width">
+                      @if($item->hasMedia('videos'))
+                      <video width="160" height="120" controls autoplay muted>
+                        <source src="{{ $item->getFirstMediaUrl('videos') }}" type="video/mp4">
+                          Your browser does not support the video tag.
+                      </video>
+               
+                  @endif
                     </td>
                     <td class="min-width">
                       <div class="lead">
@@ -177,10 +189,20 @@
                     $user = Auth()->user();
                   
                 @endphp
-                @if ($user->subscription->PlanName !== "Free")
+                @if ($user->subscription->MediaTypesAllowed === "images")
                 <div class="mb-3">
                   <label for="exampleFormControlInput23" class="form-label">image</label>
                   <input type="file" name="image" class="form-control" id="exampleFormControlInput23" >
+                </div>
+                @endif
+                @if ($user->subscription->MediaTypesAllowed === "all")
+                <div class="mb-3">
+                  <label for="exampleFormControlInput23" class="form-label">image</label>
+                  <input type="file" name="image" class="form-control" id="exampleFormControlInput23" >
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput23" class="form-label">video</label>
+                  <input type="file" name="video" class="form-control" id="exampleFormControlInput23" >
                 </div>
                 @endif
                 {{-- @if ($user->subscription->PlanName !== "Free")

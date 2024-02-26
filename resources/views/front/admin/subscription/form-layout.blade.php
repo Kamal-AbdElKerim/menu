@@ -80,7 +80,8 @@
                         <label>Media Types Allowed</label>
                         <div class="select-position">
                           <select name="MediaTypesAllowed" class="light-bg">
-                            <option selected value="images">images</option>
+                            <option selected value="none">none</option>
+                            <option  value="images">images</option>
                             <option value="videos">vidéos</option>
                             <option value="all">images + vidéos</option>
                             {{-- <option value="">Alaska</option> --}}

@@ -104,6 +104,17 @@
             <img src="{{ URL::asset('assets_menu/img/menu/lobster-bisque.jpg') }}" class="menu-img" alt="">
 
             @endif
+            @if($item->hasMedia('videos'))
+            <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
+              <a href="{{ $item->getFirstMediaUrl('videos') }}" class="glightbox play-btn">Click to play video</a>
+            </div>
+            
+            {{-- <video width="320" height="240" controls autoplay muted>
+              <source src="{{ $item->getFirstMediaUrl('videos') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> --}}
+     
+        @endif
             <div class="menu-content">
               <a href="#">{{ $item->ItemName }}</a><span>{{ $item->Price }} MAD</span>
             </div>

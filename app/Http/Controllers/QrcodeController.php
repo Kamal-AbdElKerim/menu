@@ -10,6 +10,20 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class QrcodeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (session()->has('Abonnement')) {
+                abort(403, 'Abonnement has ended');
+            }
+            return $next($request);
+        });
+        $this->middleware(['permission:QR-list']);
+
+    }
+
+
     public function afficher_menu($id){
 
         $items = item::where('MenuID',$id)->get();
@@ -40,4 +54,6 @@ class QrcodeController extends Controller
     	
     	return view("front.admin.QR_Code.QR_Code", compact('menus'));
     }
+
+
 }

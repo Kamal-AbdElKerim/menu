@@ -12,7 +12,7 @@
       <div class="row align-items-center">
         <div class="col-md-6">
           <div class="title">
-            <h2>Tables</h2>
+            <h2>QR</h2>
           </div>
         </div>
         <!-- end col -->
@@ -24,7 +24,7 @@
                   <a href="#0">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Tables
+                  QR
                 </li>
               </ol>
             </nav>
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-12">
               <div class="title mt-30 mb-30">
-                <h2>Cards</h2>
+                <h2>QR Code</h2>
               </div>
             </div>
             @foreach ($menus as $menu)
@@ -62,7 +62,7 @@
           <!-- end row -->
           <!-- ========= card-style-5 end ========= -->
       
-        <!-- ========== cards-styles end ========== -->
+        <!-- ========== QR Code-styles end ========== -->
       </div>
       <!-- end container -->
     </div>

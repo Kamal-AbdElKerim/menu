@@ -17,6 +17,8 @@ class ItemController extends Controller
             }
             return $next($request);
         });
+        $this->middleware(['permission:item-list']);
+
     }
     public function items(){
 
@@ -36,20 +38,12 @@ class ItemController extends Controller
                 $items = item::join('menus', 'menus.MenuID', '=', 'items.MenuID')
                 ->join('restaurants', 'menus.RestaurantID', '=', 'restaurants.RestaurantID')
                 ->join('users', 'restaurants.RestaurantID', '=', 'users.restaurants_id')
-                ->select('menus.*','items.*')
-                ->where('users.restaurants_id',$users->restaurants_id)
+                ->select('menus.*', 'items.*')
+                ->where('users.restaurants_id', $users->restaurants_id)
+                ->where('users.id', $id)
                 ->get();
-    //    dd($items);
-        // $media = $items[1]->getMedia('images');
 
-        // if ($media->isNotEmpty()) {
-        //     $url = $media[0]->getUrl();
-        //     dd($url);
-        // } else {
-        //     dd('No media found for this item.');
-        // }
-
-
+                // dd($items);
         return view('front.admin.items.items',compact('items','menu'));
     }
     public function add_Item(Request $request){
@@ -69,10 +63,11 @@ class ItemController extends Controller
         $items = item::join('menus', 'menus.MenuID', '=', 'items.MenuID')
         ->join('restaurants', 'menus.RestaurantID', '=', 'restaurants.RestaurantID')
         ->join('users', 'restaurants.RestaurantID', '=', 'users.restaurants_id')
-        ->select('menus.*','items.*')
-        ->where('users.restaurants_id',$users->restaurants_id)
+        ->select('menus.*', 'items.*')
+        ->where('users.restaurants_id', $users->restaurants_id)
+        ->where('users.id', $id)
         ->get();
-
+         //  dd(count($items) );
         if (count($items) < $users->subscription->NumMenuItemsAllowed) {
 
                 $item = new item();
@@ -86,7 +81,10 @@ class ItemController extends Controller
                 $item->addMediaFromRequest('image')->toMediaCollection('images');
 
                 }
-
+                if ($request->hasFile('video')) {
+                    $item->addMediaFromRequest('video')->toMediaCollection('videos');
+                }
+               
                 return redirect()->back();
             }else {
                 return redirect()->back()->with('upgrade_message', 'you have to upgrade');

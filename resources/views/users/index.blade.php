@@ -33,6 +33,7 @@
    <th width="280px">Action</th>
  </tr>
  @foreach ($data as $key => $user)
+
   <tr>
     <td>{{ $user->name }}</td>
     <td>{{ $user->email }}</td>
