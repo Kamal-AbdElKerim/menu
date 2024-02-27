@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'Is_active',
+        'google_id',
         'restaurants_id',
     ];
 

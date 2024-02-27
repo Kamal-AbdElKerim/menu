@@ -14,18 +14,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('sub_id')->nullable();
-            $table->unsignedBigInteger('restaurants_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            // $table->enum('Role', ['Owner', 'Operator', 'Admin']);
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
-            $table->foreign('sub_id')->references('SubscriptionID')->on('subscriptions')->onDelete('cascade');
-            // $table->foreign('restaurants_id')->references('RestaurantID')->on('restaurants')->onDelete('cascade');
-
-
         });
     }
 

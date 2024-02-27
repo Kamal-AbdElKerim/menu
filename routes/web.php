@@ -1,10 +1,15 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\GoogleController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\QrcodeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -76,5 +81,16 @@ Route::middleware('auth')->group(function () {
 Route::get('/afficher_menu/{id}', [QrcodeController::class, 'afficher_menu'])->name('afficher_menu');
 Route::get('/generate_qrcode', [QRCodeController::class, 'generate'])->name('generate_qrcode');
 
+
+
+// Route::controller(GoogleController::class)->group(function(){
+//     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+//      Route::get('auth/google/callback', 'handleGoogleCallback')->name('google.callback');
+// });
+
+
+Route::get('/auth/{provider}/redirect',[GoogleController::class, 'redirect']);
+ 
+Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
 require __DIR__.'/auth.php';

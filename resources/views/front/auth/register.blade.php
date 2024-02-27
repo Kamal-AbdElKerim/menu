@@ -115,7 +115,7 @@
                     </div>
                   </div>
                   <!-- end row -->
-                </form>
+              
                 <div class="singup-option pt-40">
                   <p class="text-sm text-medium text-center text-gray">
                     Easy Sign Up With
@@ -125,15 +125,16 @@
                       <i class="lni lni-facebook-fill mr-10"></i>
                       Facebook
                     </button>
-                    <button class="main-btn danger-btn-outline m-2">
-                      <i class="lni lni-google mr-10"></i>
-                      Google
-                    </button>
+                
+                    {{-- <a href="{{ route('auth.google') }}" class="main-btn danger-btn-outline m-2"><i class="lni lni-google mr-10"></i> Login with Google </a> --}}
+                    <a href="/auth/google/redirect" class="main-btn danger-btn-outline m-2"><i class="lni lni-google mr-10"></i> Login with Google </a>
+              
                   </div>
                   <p class="text-sm text-medium text-dark text-center">
                     Already have an account? <a href="{{ route('login') }}">Sign In</a>
                   </p>
                 </div>
+              </form>
               </div>
             </div>
           </div>
