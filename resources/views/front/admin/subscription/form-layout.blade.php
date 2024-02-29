@@ -164,7 +164,7 @@
                       <a href="{{ route('form_Update_sub',$item->SubscriptionID ) }}" class="main-btn success-btn rounded-full btn-hover">Update</a>
                  
                     
-                      <a href="{{ route('delete_sub',$item->SubscriptionID ) }}" class="main-btn danger-btn rounded-full btn-hover">Delete</a>
+                      {{-- <a href="{{ route('delete_sub',$item->SubscriptionID ) }}" class="main-btn danger-btn rounded-full btn-hover">Delete</a> --}}
 
                   </div>
                 </div>

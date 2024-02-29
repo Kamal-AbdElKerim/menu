@@ -28,8 +28,10 @@ class DatabaseSeeder extends Seeder
         'item-list',
         'abonnement',
         'chose_abonnement',
+        'Restaurant',
         'QR-list',
         'restaurant_all',
+       
     ];
 
 
@@ -43,6 +45,8 @@ class DatabaseSeeder extends Seeder
             // Permission::create(['owner' => $permission]);
         }
 
+            
+
         // Create admin User and assign the role to him.
         $user = User::create([
             'name' => 'Admin',
@@ -50,12 +54,66 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin@example.com')
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        $adminPermissions = [
+            'role-list',
+            'role-create',
+            'role-edit',
+            'role-delete',
+            'Abonnement-list',
+            'Users-list',
+          
+            'restaurant_all',
+            // Add more permissions as needed
+        ];
 
-        $permissions = Permission::pluck('id', 'id')->all();
+        $adminRole = Role::create(['name' => 'Admin']);
+        $adminPermissionsToAssign = Permission::whereIn('name', $adminPermissions)->pluck('id')->toArray();
+        $adminRole->syncPermissions($adminPermissionsToAssign);
 
-        $role->syncPermissions($permissions);
+        $user->assignRole([$adminRole->id]);
 
-        $user->assignRole([$role->id]);
+        $ownerPermissions = [
+            'role-list',
+            'role-create',
+            'role-edit',
+            'role-delete',
+            'Operateur_list',
+            'menus-list',
+            'item-list',
+            'abonnement',
+            'chose_abonnement',
+            'QR-list',
+            'Restaurant',
+        ];
+        $ownerRole = Role::create(['name' => 'owner']);
+        $permissionsToAssign = Permission::whereIn('name', $ownerPermissions)->pluck('id')->toArray();
+        $ownerRole->syncPermissions($permissionsToAssign);
+
+
+        $operateurPermissions = [
+    
+            'menus-list',
+            'item-list',
+            'QR-list',
+            // Add more permissions as needed
+        ];
+        
+        // Create the Operateur Role and assign specific permissions
+        $operateurRole = Role::create(['name' => 'Operateur']);
+        $operateurPermissionsToAssign = Permission::whereIn('name', $operateurPermissions)->pluck('id')->toArray();
+        $operateurRole->syncPermissions($operateurPermissionsToAssign);
+
+
+        $userPermissions = [
+            'restaurant_all',
+
+            // Add more permissions as needed
+        ];
+        
+        // Create the User Role and assign specific permissions
+        $userRole = Role::create(['name' => 'User']);
+        $userPermissionsToAssign = Permission::whereIn('name', $userPermissions)->pluck('id')->toArray();
+        $userRole->syncPermissions($userPermissionsToAssign);
+     
     }
 }

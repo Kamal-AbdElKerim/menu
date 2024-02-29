@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -56,14 +56,14 @@ class RegisteredUserController extends Controller
         $lastInsertedId = $user->id;
         
       $role = role::where('name','owner')->first() ;
-
-         model_has_role::create([
+  
+       $mo =  model_has_role::create([
             'role_id' => $role->id,
             'model_type' => "App\Models\User",
             'model_id' => $lastInsertedId,  
          
         ]);
-
+      
     
         $restaurant = new restaurant();
         $restaurant->Name = "name the restaurant";

@@ -25,7 +25,7 @@ class SubscriptionsController extends Controller
     }
 
     public function index(){
-
+       
          return view('front.admin.subscription.form-layout');
 
     }
@@ -35,59 +35,99 @@ class SubscriptionsController extends Controller
     public function plans_abonnement(){
 
         $subscription = subscription::all();
+        
+          if (count($subscription) == 0) {
+             
+              Subscription::insert([
+                  [
+                      'PlanName' => 'Free',
+                      'Description' => 'Free to Start',
+                      'NumMenuItemsAllowed' => '5',
+                      'MediaTypesAllowed' => 'none',
+                      'ScansAllowed' => '10',
+                      'Duration' => '30',
+                      'Price' => '0.00',
+                      'created_at' => now(),
+                      'updated_at' => now(),
+                  ],
+                  [
+                      'PlanName' => 'Standard',
+                      'Description' => 'Standard',
+                      'NumMenuItemsAllowed' => '20',
+                      'MediaTypesAllowed' => 'images',
+                      'ScansAllowed' => '100',
+                      'Duration' => '100',
+                      'Price' => '300.00',
+                      'created_at' => now(),
+                      'updated_at' => now(),
+                  ],
+                  [
+                      'PlanName' => 'Premium',
+                      'Description' => 'Premium is the Best',
+                      'NumMenuItemsAllowed' => '500',
+                      'MediaTypesAllowed' => 'all',
+                      'ScansAllowed' => '200',
+                      'Duration' => '1000',
+                      'Price' => '500.00',
+                      'created_at' => now(),
+                      'updated_at' => now(),
+                  ]
+              ]);
+      
+          }
 
         return view('front.admin.subscription.form-layout',compact('subscription'));
     }
 
-    public function add_subscription(Request $request){
-           // Validation rules
-           $rules = [
-            'PlanName' => 'required|max:50',
-            'Description' => 'required|max:255',
-            'NumMenuItemsAllowed' => 'required|integer',
-            'MediaTypesAllowed' => 'required|max:100',
-            'ScansAllowed' => 'required|integer',
-            'Duration' => 'required|max:50',
-            'Price' => 'required|numeric|min:0',
-        ];
+    // public function add_subscription(Request $request){
+    //        // Validation rules
+    //        $rules = [
+    //         'PlanName' => 'required|max:50',
+    //         'Description' => 'required|max:255',
+    //         'NumMenuItemsAllowed' => 'required|integer',
+    //         'MediaTypesAllowed' => 'required|max:100',
+    //         'ScansAllowed' => 'required|integer',
+    //         'Duration' => 'required|max:50',
+    //         'Price' => 'required|numeric|min:0',
+    //     ];
 
-        // Custom validation messages
-        $messages = [
-            'Price.numeric' => 'The price must be a number.',
-            'Price.min' => 'The price must be at least 0.',
-        ];
+    //     // Custom validation messages
+    //     $messages = [
+    //         'Price.numeric' => 'The price must be a number.',
+    //         'Price.min' => 'The price must be at least 0.',
+    //     ];
 
-        // Validate the request
-        $validator = Validator::make($request->all(), $rules, $messages);
+    //     // Validate the request
+    //     $validator = Validator::make($request->all(), $rules, $messages);
 
-        // If validation fails, return the validation errors
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+    //     // If validation fails, return the validation errors
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
 
-        // Validation passed, create a new subscription
-        $subscription = new subscription();
-        $subscription->PlanName = $request->PlanName;
-        $subscription->Description = $request->Description;
-        $subscription->NumMenuItemsAllowed = $request->NumMenuItemsAllowed;
-        $subscription->MediaTypesAllowed = $request->MediaTypesAllowed;
-        $subscription->ScansAllowed = $request->ScansAllowed;
-        $subscription->Duration = $request->Duration;
-        $subscription->Price = $request->Price;
-        $subscription->save();
+    //     // Validation passed, create a new subscription
+    //     $subscription = new subscription();
+    //     $subscription->PlanName = $request->PlanName;
+    //     $subscription->Description = $request->Description;
+    //     $subscription->NumMenuItemsAllowed = $request->NumMenuItemsAllowed;
+    //     $subscription->MediaTypesAllowed = $request->MediaTypesAllowed;
+    //     $subscription->ScansAllowed = $request->ScansAllowed;
+    //     $subscription->Duration = $request->Duration;
+    //     $subscription->Price = $request->Price;
+    //     $subscription->save();
 
-        // Redirect or return a response indicating success
-        return redirect()->route('plans_abonnement')->with('flash_message', 'Subscription added successfully.');
+    //     // Redirect or return a response indicating success
+    //     return redirect()->route('plans_abonnement')->with('flash_message', 'Subscription added successfully.');
         
-    }
+    // }
 
-    public function delete_sub($id){
+    // public function delete_sub($id){
          
-        subscription::find($id)->delete();
+    //     subscription::find($id)->delete();
 
-        return redirect()->back();
+    //     return redirect()->back();
 
-    }
+    // }
     public function form_Update_sub($id){
          
        $subscription = subscription::find($id);
@@ -99,15 +139,12 @@ class SubscriptionsController extends Controller
   
     public function update_subscription(Request $request, $id)
     {
-        // Find the subscription by ID
         $subscription = Subscription::find($id);
 
-        // If subscription with the given ID doesn't exist, return an error response
         if (!$subscription) {
             return response()->json(['error' => 'Subscription not found'], 404);
         }
 
-        // Validation rules
         $rules = [
             'PlanName' => 'required|max:50',
             'Description' => 'required|max:255',
@@ -145,7 +182,7 @@ class SubscriptionsController extends Controller
         $subscription->save();
 
         // Return a success response
-        return redirect()->route('plans_abonnement')->with('flash_message', 'Restaurant updated successfully');
+        return redirect()->route('plans_abonnement')->with('flash_message', 'Abonnement updated successfully');
     }
 
     public function chose_abonnement(){
