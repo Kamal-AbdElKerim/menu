@@ -30,7 +30,7 @@ class ItemController extends Controller
         $users = User::where('id',$id)->first() ;
 
         $menu = Menu::join('restaurants', 'menus.RestaurantID', '=', 'restaurants.RestaurantID')
-                ->join('users', 'restaurants.UserID', '=', 'users.id')
+                ->join('users', 'restaurants.RestaurantID', '=', 'users.restaurants_id')
                 ->select('menus.*','restaurants.Name')
                 ->where('users.id',$id)
                 ->get();
@@ -85,9 +85,9 @@ class ItemController extends Controller
                     $item->addMediaFromRequest('video')->toMediaCollection('videos');
                 }
                
-                return redirect()->back();
+                return redirect()->back()->with('flash_message', 'item is add');
             }else {
-                return redirect()->back()->with('upgrade_message', 'you have to upgrade');
+                return redirect()->back()->with('flash_message', 'you have to upgrade');
             }
               
     }
@@ -95,6 +95,6 @@ class ItemController extends Controller
     public function delete_item($id){
         item::find($id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', 'item is deleted');
     }
 }

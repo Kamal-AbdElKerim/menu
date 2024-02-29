@@ -21,12 +21,15 @@ class DatabaseSeeder extends Seeder
         'role-create',
         'role-edit',
         'role-delete',
-        'product-list',
-        'product-create',
-        'product-edit',
-        'product-delete',
         'Abonnement-list',
-        'Users-list'
+        'Users-list',
+        'Operateur_list',
+        'menus-list',
+        'item-list',
+        'abonnement',
+        'chose_abonnement',
+        'QR-list',
+        'restaurant_all',
     ];
 
 
@@ -37,13 +40,14 @@ class DatabaseSeeder extends Seeder
     {
         foreach ($this->permissions as $permission) {
             Permission::create(['name' => $permission]);
+            // Permission::create(['owner' => $permission]);
         }
 
         // Create admin User and assign the role to him.
         $user = User::create([
-            'name' => 'Prevail Ejimadu',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password')
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('admin@example.com')
         ]);
 
         $role = Role::create(['name' => 'Admin']);

@@ -12,15 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
+            $table->unsignedBigInteger('sub_id')->nullable();
+            $table->unsignedBigInteger('restaurants_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
+            $table->timestamp('two_factor_confirmed_at')->nullable();
+            $table->integer('Is_active')->default(0);
+            $table->string('google_id')->nullable();
             $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
+
+            // Foreign Key Constraints
+            $table->foreign('sub_id')->references('SubscriptionID')->on('subscriptions')->onDelete('cascade');
+            $table->foreign('restaurants_id')->references('RestaurantID')->on('restaurants')->onDelete('cascade');
         });
     }
 

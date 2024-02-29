@@ -40,7 +40,13 @@ class OperateurController extends Controller
 
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+
+         if (Auth()->id() != 1) {
+            $roles = Role::where('name', 'Operateur')->pluck('name', 'name');
+        }else {
+            $roles = Role::pluck('name','name')->all();
+         }
+        // dd($roles);
         return view('Operateur.create',compact('roles'));
     }
     
@@ -72,7 +78,8 @@ class OperateurController extends Controller
        
     
         return redirect()->route('Operateur.index')
-                        ->with('success','User created successfully');
+                        ->with('flash_message', 'Operateur add!');
+
     }
     
     public function show($id)
@@ -113,7 +120,7 @@ class OperateurController extends Controller
         $user->assignRole($request->input('roles'));
     
         return redirect()->route('Operateur.index')
-                        ->with('success','User updated successfully');
+                        ->with('flash_message','Operateur updated successfully');
     }
     
     public function destroy($id)
@@ -121,6 +128,6 @@ class OperateurController extends Controller
         // dd($id);
         User::find($id)->delete();
         return redirect()->route('Operateur.index')
-                        ->with('success','User deleted successfully');
+        ->with('flash_message', 'Operateur is deleted!');
     }
 }

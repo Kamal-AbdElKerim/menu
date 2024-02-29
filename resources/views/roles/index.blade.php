@@ -61,7 +61,7 @@
               <tbody>
 
                 @foreach ($roles as $key => $role)
-                @if ($role->name === 'Admin' && Auth()->id() != 1)
+                @if ($role->name === 'Admin' && Auth()->id() != 1 || $role->name === 'owner' && Auth()->id() != 1 || $role->name === 'User' && Auth()->id() != 1)
                     @continue
                 @endif
             

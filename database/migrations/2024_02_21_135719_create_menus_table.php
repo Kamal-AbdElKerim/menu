@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id('MenuID');
             $table->unsignedBigInteger('RestaurantID');
             $table->string('MenuName');
-            // Add additional menu information fields as needed
-            // $table->string('additional_field');
-            // ...
+        
             $table->timestamps();
 
             // Foreign key constraint

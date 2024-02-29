@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\PDFController;
 use App\Models\GoogleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +81,8 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/afficher_menu/{id}', [QrcodeController::class, 'afficher_menu'])->name('afficher_menu');
 Route::get('/generate_qrcode', [QRCodeController::class, 'generate'])->name('generate_qrcode');
+// Route::get('/generate-pdf', [PDFController::class, 'generatePdf'])->name('generate.pdf');
+
 
 
 
@@ -92,5 +95,7 @@ Route::get('/generate_qrcode', [QRCodeController::class, 'generate'])->name('gen
 Route::get('/auth/{provider}/redirect',[GoogleController::class, 'redirect']);
  
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
+
+
 
 require __DIR__.'/auth.php';

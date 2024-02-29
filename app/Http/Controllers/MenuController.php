@@ -31,9 +31,11 @@ class MenuController extends Controller
 
       
         $Menus = Menu::join('restaurants', 'menus.RestaurantID', '=', 'restaurants.RestaurantID')
-                ->join('users', 'restaurants.UserID', '=', 'users.id')
+                // ->join('users', 'restaurants.UserID', '=', 'users.id')
+                ->join('users', 'restaurants.RestaurantID', '=', 'users.restaurants_id')
                 ->select('menus.*','restaurants.Name')
                 ->where('users.restaurants_id',$users->restaurants_id)
+                ->where('users.id', $id)
                 ->get();
 
              
@@ -67,7 +69,8 @@ class MenuController extends Controller
         $menu->save();
 
     }
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', 'Menu is ADD!');
+        ;
 
     }
 
@@ -75,7 +78,7 @@ class MenuController extends Controller
 
         Menu::find($id)->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', 'Menu is deleted!');
            
     }
 }

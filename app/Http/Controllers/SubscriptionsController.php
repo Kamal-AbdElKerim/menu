@@ -77,7 +77,7 @@ class SubscriptionsController extends Controller
         $subscription->save();
 
         // Redirect or return a response indicating success
-        return redirect()->route('plans_abonnement')->with('success', 'Subscription added successfully.');
+        return redirect()->route('plans_abonnement')->with('flash_message', 'Subscription added successfully.');
         
     }
 
@@ -145,7 +145,7 @@ class SubscriptionsController extends Controller
         $subscription->save();
 
         // Return a success response
-        return redirect()->route('plans_abonnement');
+        return redirect()->route('plans_abonnement')->with('flash_message', 'Restaurant updated successfully');
     }
 
     public function chose_abonnement(){
@@ -188,7 +188,7 @@ class SubscriptionsController extends Controller
         $user->save();
        
 
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', 'you buy Abonnement');
      }
 
 

@@ -34,7 +34,16 @@ class RoleController extends Controller
 
     public function create()
     {
+        // $permission = Permission::get();
+        // $permission = Permission::join('role_has_permissions','role_has_permissions.permission_id','permissions.id')
+        //                         ->join('roles','role_has_permissions.role_id','roles.id')
+        //                         ->join('model_has_roles','roles.id','model_has_roles.role_id')
+        //                         ->where('model_has_roles.model_id',Auth()->id())
+        //                         ->select('roles.*')
+        //                         ->get();
+        //                         dd($permission);
         $permission = Permission::get();
+
         return view('roles.create', compact('permission'));
     }
 
@@ -49,7 +58,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role created successfully');
+            ->with('flash_message', 'Role created successfully');
     }
 
     public function show($id)
@@ -87,13 +96,13 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role updated successfully');
+            ->with('flash_message', 'Role updated successfully');
     }
 
     public function destroy($id)
     {
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('roles.index')
-            ->with('success', 'Role deleted successfully');
+            ->with('flash_message', 'Role deleted successfully');
     }
 }

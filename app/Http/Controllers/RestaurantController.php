@@ -58,7 +58,7 @@ class RestaurantController extends Controller
         $restaurant->Address = $request->Address;
         $restaurant->save();
          
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', 'Restaurant add successfully');
 
     }
     public function update_restaurant(Request $request, $id) {
@@ -71,7 +71,7 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('RestaurantID', $id)->first();
     // dd($restaurant);
         if (!$restaurant) {
-            return redirect()->back()->with('error', 'Restaurant not found');
+            return redirect()->back()->with('flash_message', 'Restaurant not found');
         }
     
         $restaurant->Name = $request->Name;
@@ -79,7 +79,7 @@ class RestaurantController extends Controller
         $restaurant->Address = $request->Address;
         $restaurant->save();
     
-        return redirect()->back()->with('success', 'Restaurant updated successfully');
+        return redirect()->back()->with('flash_message', 'Restaurant updated successfully');
     }
     
 }

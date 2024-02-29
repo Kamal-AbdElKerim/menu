@@ -50,14 +50,20 @@
                         <a href="#0">
                             {!! QrCode::size(200)->generate("http://127.0.0.1:8000/afficher_menu/$menu->MenuID") !!}
                         </a>
+                        
                     </div>
-                    <div class="card-content text-center mt-4">
-                        <h4><a href="#0">{{ $menu->MenuName }}</a></h4>
+                    
+                    <div class="card-content  d-flex  justify-content-between  mt-4">
+                      <h4><a href="#0">{{ $menu->MenuName }}</a></h4>
+                      <a class="me-5"  href="{{ route('afficher_menu',$menu->MenuID) }}" target="_blank"><i class="fa-regular fa-share-from-square"></i></a>
+
+              
                     </div>
                 </div>
             </div>
         @endforeach
-        
+        {{-- <a href="{{ route('generate.pdf') }}" target="_blank">Generate PDF</a> --}}
+
           </div>
           <!-- end row -->
           <!-- ========= card-style-5 end ========= -->

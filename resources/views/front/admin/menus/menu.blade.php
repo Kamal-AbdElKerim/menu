@@ -45,7 +45,8 @@
             <button type="button" class="main-btn btn-sm primary-btn btn-hover" data-bs-toggle="modal"
             data-bs-target="#ModalThree">
             add menu
-          </button>          </div>
+          </button>     
+             </div>
             <div class="table-wrapper table-responsive">
               <table class="table">
                 <thead>

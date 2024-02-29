@@ -56,7 +56,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
     
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                        ->with('flash_message','User created successfully');
     }
     
     public function show($id)
@@ -97,7 +97,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
     
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('flash_message','User updated successfully');
     }
     
     public function destroy($id)
@@ -105,6 +105,6 @@ class UserController extends Controller
         // dd($id);
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('flash_message','User deleted successfully');
     }
 }

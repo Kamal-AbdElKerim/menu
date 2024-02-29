@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string('ItemName');
             $table->text('Description')->nullable();
             $table->decimal('Price', 10, 2);
-            // Add additional item information fields as needed
-            // $table->string('additional_field');
-            // ...
+          
 
             $table->timestamps();
 
