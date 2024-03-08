@@ -16,7 +16,7 @@ class RestaurantController extends Controller
             }
             return $next($request);
         });
-        $this->middleware(['permission:restaurant-info'], ['except' => 'restaurant_all']);
+        $this->middleware(['permission:Restaurant'], ['except' => 'restaurant_all']);
         $this->middleware(['permission:restaurant_all'], ['only' => 'restaurant_all']);
         // $this->middleware(['permission:product-edit'], ['only' => ['edit', 'update']]);
         // $this->middleware(['permission:product-delete'], ['only' => ['destroy']]);

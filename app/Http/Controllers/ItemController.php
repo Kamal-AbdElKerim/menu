@@ -43,7 +43,7 @@ class ItemController extends Controller
                 ->where('users.id', $id)
                 ->get();
 
-                // dd($items);
+                
         return view('front.admin.items.items',compact('items','menu'));
     }
     public function add_Item(Request $request){

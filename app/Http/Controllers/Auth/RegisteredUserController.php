@@ -57,12 +57,14 @@ class RegisteredUserController extends Controller
         
       $role = role::where('name','owner')->first() ;
   
-       $mo =  model_has_role::create([
-            'role_id' => $role->id,
-            'model_type' => "App\Models\User",
-            'model_id' => $lastInsertedId,  
+    //    $mo =  model_has_role::create([
+    //         'role_id' => $role->id,
+    //         'model_type' => "App\Models\User",
+    //         'model_id' => $lastInsertedId,  
          
-        ]);
+    //     ]);
+
+        $user->assignRole('owner');
       
     
         $restaurant = new restaurant();

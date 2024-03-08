@@ -84,6 +84,7 @@ class DatabaseSeeder extends Seeder
             'chose_abonnement',
             'QR-list',
             'Restaurant',
+            'restaurant-info',
         ];
         $ownerRole = Role::create(['name' => 'owner']);
         $permissionsToAssign = Permission::whereIn('name', $ownerPermissions)->pluck('id')->toArray();

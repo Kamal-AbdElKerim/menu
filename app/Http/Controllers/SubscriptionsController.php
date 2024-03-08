@@ -221,6 +221,8 @@ class SubscriptionsController extends Controller
         $user->sub_id = $id;
         $user->created_at = Carbon::now();
         session()->forget('Abonnement');
+        session(['num_scan' => 0]);
+
 
         $user->save();
        

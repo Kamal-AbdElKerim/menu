@@ -6,6 +6,7 @@ use App\Models\PDFController;
 use App\Models\GoogleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoleController;
@@ -81,6 +82,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/afficher_menu/{id}', [QrcodeController::class, 'afficher_menu'])->name('afficher_menu');
 Route::get('/generate_qrcode', [QRCodeController::class, 'generate'])->name('generate_qrcode');
+Route::get('/go_site/{id}', [QRCodeController::class, 'go_site'])->name('go_site');
 // Route::get('/generate-pdf', [PDFController::class, 'generatePdf'])->name('generate.pdf');
 
 

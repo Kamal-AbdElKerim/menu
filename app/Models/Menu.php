@@ -12,6 +12,7 @@ class Menu extends Model
     protected $fillable = [
         'RestaurantID',
         'MenuName',
+        'num_scan',
      
     ];
     protected $primaryKey = 'MenuID';

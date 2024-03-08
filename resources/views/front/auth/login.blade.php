@@ -59,6 +59,7 @@
             </div>
           </div>
           <!-- end col -->
+          
           <div class="col-lg-6">
             <div class="signin-wrapper">
               <div class="form-wrapper">
@@ -67,6 +68,15 @@
                   Start creating the best possible user experience for you
                   customers.
                 </p>
+                @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                  <div class="row">

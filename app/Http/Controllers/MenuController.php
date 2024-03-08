@@ -38,7 +38,7 @@ class MenuController extends Controller
                 ->where('users.id', $id)
                 ->get();
 
-             
+           
 
       
         return view('front.admin.menus.menu',compact("Menus"));
